@@ -1,0 +1,10 @@
+{
+	"id": "custom-file-viewer",
+	"name": "Custom File Viewer",
+	"version": "1.0.0",
+	"minAppVersion": "1.8.10",
+	"description": "Open files with custom external applications based on file extension",
+	"author": "peabody28",
+	"authorUrl": "https://peabody28.com",
+	"isDesktopOnly": true
+}
