@@ -1,8 +1,24 @@
-/*
+.setting-item-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.setting-item-row-ext-input {
+  width: 80px;
+}
 
-If your plugin does not need CSS, delete this file.
+.setting-item-row-app-input {
+  flex-grow: 1;
+}
 
-*/
+.add-mapping-button {
+  margin-top: 10px;
+}
+
+.ignored-ext-textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+}

@@ -102,21 +102,19 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
 
       Object.entries(map).forEach(([ext, appPath]) => {
         const row = listContainer.createDiv({ cls: "setting-item" });
-        row.style.display = "flex";
-        row.style.gap = "10px";
-        row.style.alignItems = "center";
+        row.addClass("setting-item-row");
 
         // Extension text input
         const extInput = new TextComponent(row);
         extInput.setPlaceholder("Extension (e.g. py)");
         extInput.setValue(ext);
-        extInput.inputEl.style.width = "80px";
+        extInput.inputEl.addClass("setting-item-row-ext-input");
 
         // App path text input
         const appInput = new TextComponent(row);
         appInput.setPlaceholder("Path to app");
         appInput.setValue(appPath);
-        appInput.inputEl.style.flexGrow = "1";
+        appInput.inputEl.addClass("setting-item-row-app-input");
 
         // Remove button
         const removeBtn = new ButtonComponent(row);
@@ -151,7 +149,7 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
 
       // Добавить новую пару
       const addBtn = listContainer.createEl("button", { text: "Add Mapping" });
-      addBtn.style.marginTop = "10px";
+      addBtn.addClass("add-mapping-button");
       addBtn.onclick = () => {
         map[""] = "";
         this.plugin.saveSettings().then(() => refreshList());
@@ -166,8 +164,7 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
       .setDesc("Comma-separated list of extensions that Obsidian will handle itself.")
       .addTextArea(text => {
         text.setValue(this.plugin.settings.ignoredExtensions.join(", "));
-        text.inputEl.style.width = "100%";
-        text.inputEl.rows = 3;
+        text.inputEl.addClass("ignored-ext-textarea");
         text.onChange(async (value) => {
           this.plugin.settings.ignoredExtensions = value
             .split(",")
