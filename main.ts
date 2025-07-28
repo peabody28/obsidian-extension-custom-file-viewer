@@ -77,11 +77,8 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
 
-    containerEl.createEl("h2", { text: "Custom File Viewer Settings" });
-
-    // Default app
     new Setting(containerEl)
-      .setName("Default Application Path")
+      .setName("Default application path")
       .setDesc("Path to the default app for opening files (used if no mapping found).")
       .addText(text =>
         text
@@ -92,8 +89,8 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
             await this.plugin.saveSettings();
           }));
 
-    // Extension to app mapping (list)
-    containerEl.createEl("h3", { text: "Extension to Application Mapping" });
+    new Setting(containerEl).setName('Extension to application mapping').setHeading();
+
     const listContainer = containerEl.createDiv();
 
     const refreshList = () => {
@@ -104,19 +101,16 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
         const row = listContainer.createDiv({ cls: "setting-item" });
         row.addClass("setting-item-row");
 
-        // Extension text input
         const extInput = new TextComponent(row);
         extInput.setPlaceholder("Extension (e.g. py)");
         extInput.setValue(ext);
         extInput.inputEl.addClass("setting-item-row-ext-input");
 
-        // App path text input
         const appInput = new TextComponent(row);
         appInput.setPlaceholder("Path to app");
         appInput.setValue(appPath);
         appInput.inputEl.addClass("setting-item-row-app-input");
 
-        // Remove button
         const removeBtn = new ButtonComponent(row);
         removeBtn.setButtonText("Remove");
         removeBtn.onClick(async () => {
@@ -125,7 +119,6 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
           refreshList();
         });
 
-        // Обновление map при изменении
         extInput.onChange(async (newExt) => {
           const oldExt = ext;
           const value = appInput.getValue();
@@ -147,8 +140,7 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
         });
       });
 
-      // Добавить новую пару
-      const addBtn = listContainer.createEl("button", { text: "Add Mapping" });
+      const addBtn = listContainer.createEl("button", { text: "Add mapping" });
       addBtn.addClass("add-mapping-button");
       addBtn.onclick = () => {
         map[""] = "";
@@ -158,8 +150,8 @@ class CustomFileViewerSettingTab extends PluginSettingTab {
 
     refreshList();
 
-    // Ignored extensions textarea
-    containerEl.createEl("h3", { text: "Ignored Extensions" });
+    new Setting(containerEl).setName("Ignored extensions").setHeading();
+
     new Setting(containerEl)
       .setDesc("Comma-separated list of extensions that Obsidian will handle itself.")
       .addTextArea(text => {
