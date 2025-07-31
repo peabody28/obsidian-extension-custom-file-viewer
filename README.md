@@ -1,4 +1,4 @@
-# Obsidian 'Custom File Viewer' Pligin
+# 'Custom File Viewer' Plugin
 
 A plugin for [Obsidian](https://obsidian.md) that allows you to open non-markdown files using custom external applications, based on file extensions.
 
